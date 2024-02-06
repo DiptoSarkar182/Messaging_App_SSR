@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  div
+    p Welcome to messenger, a place to chat with friends.
+    if currentUser
+      a(href="/chat-room") Enter Chat Room
+    else
+      a(href="/sign-up") Sign Up
