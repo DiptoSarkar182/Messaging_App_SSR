@@ -118,6 +118,33 @@ exports.sign_up_post = [
 
 exports.sign_in_get = (req,res,next)=>{
     return res.render("sign-in-page",{
-        title: "Login"
+        title: "Sign in",
+        errors: req.flash("SignUpMessage"),
     })
 };
+
+exports.sign_in_post =  passport.authenticate(
+  "local", {
+      successRedirect: "/",
+      failureRedirect: "/sign-in",
+      failureFlash: true,
+  }
+);
+
+exports.visit_profile_get = (req,res,next)=>{
+  const currentUser = req.user;
+  
+  return res.render("visit-profile-page",{
+    title: "Profile details",
+    currentUser: currentUser,
+  })
+}
+
+exports.log_out = (req,res,next)=>{
+  req.logout((err)=>{
+    if(err){
+      return next(err)
+    }
+    return res.redirect("/");
+  })
+}

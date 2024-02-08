@@ -1,0 +1,12 @@
+extends layout 
+
+block content
+    div.chat_room_page
+        h1.chat_room_pagetitle!=title
+        ul.chat_room_page_layout_ul
+          li.chat_room_page_layout_add_friend
+            a(href="/add-friend").add_friend Add Friend
+          li.chat_room_page_layout_view_friend_request
+            a(href="/view-friend-request").view_friend_request View Friend Request
+          li.chat_room_page_layout_view_friends_list
+            a(href="/view-friends-list").view_friends_list Friends List

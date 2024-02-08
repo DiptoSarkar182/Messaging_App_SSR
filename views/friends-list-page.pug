@@ -1,0 +1,9 @@
+extends layout 
+
+block content
+    h1.view_friends_list_title!= title
+    if friendsList.length === 0
+        p You have no friend.
+    else
+        each friend in friendsList
+            p.view_friends_list_username= friend.username

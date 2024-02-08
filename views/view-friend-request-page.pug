@@ -1,0 +1,13 @@
+extends layout 
+
+block content
+    h1.view_friend_request_title!= title
+    if friendRequestList.length === 0
+        p.view_friend_request_none There are no friend requests.
+    else
+        each friendRequest in friendRequestList
+            if !currentUser.friend_list.includes(friendRequest.id)
+                p.view_friend_request_username= friendRequest.username
+                a.view_friend_request_accept(href=`/accept-request/${friendRequest.id}`) Accept
+                | &nbsp;
+                a.view_friend_request_reject(href=`/reject-request/${friendRequest.id}`) Reject

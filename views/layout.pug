@@ -9,12 +9,12 @@ html
       if currentUser
         ul.layout_ul
           li.layout_greeting Hello, #{currentUser.username}
-          //- li.layout_create_blog
-          //-   a(href="/create-blog") Create blog
-          //- li.layout_my_account
-          //-     a(href="/my-account") My Account
-          //- li.layout_logout
-          //-   a(href="/logout").logout Logout
+          li.layout_chat_room
+            a(href="/chat-room") Chat Room
+          li.layout_my_account
+              a(href="/visit-profile") My Profile
+          li.layout_logout
+            a(href="/log-out").logout Logout
 
       else 
         ul 

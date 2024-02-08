@@ -31,6 +31,16 @@ const UserSchema = new Schema({
     files: {
         type: Array,
     },
+    friend_request: {
+        type: Array,
+    },
+    friend_list: {
+        type: Array,
+    },
 });
+
+UserSchema.virtual("fullName").get(function (){
+    return `${this.firstname} ${this.lastname}`;
+})
 
 module.exports = mongoose.model("User", UserSchema);
