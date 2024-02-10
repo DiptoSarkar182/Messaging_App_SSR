@@ -7,7 +7,8 @@ block content
     else
         each friendRequest in friendRequestList
             if !currentUser.friend_list.includes(friendRequest.id)
-                p.view_friend_request_username= friendRequest.username
-                a.view_friend_request_accept(href=`/accept-request/${friendRequest.id}`) Accept
-                | &nbsp;
-                a.view_friend_request_reject(href=`/reject-request/${friendRequest.id}`) Reject
+                p.view_friend_request_username!= friendRequest.username
+                div.view_friend_request_buttons
+                    a.view_friend_request_accept(href=`/accept-request/${friendRequest.id}`) Accept
+                    | &nbsp;
+                    a.view_friend_request_reject(href=`/reject-request/${friendRequest.id}`) Reject

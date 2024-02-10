@@ -9,17 +9,17 @@ block content
             a(href=`/view-inbox/${friend.id}`) #{friend.username}
             br
             br
-    
-    each info in sendInfo
-        div.message
-            span.info_username !{info.sender.username}(!{info.timestamp_formatted}):#{' '}
-            if info.files.length > 0
-                img.info_image(src=info.files[0].url, alt="Image", style="max-width: 10%;")
-            span.info_message !{info.messages}
+    div.message_container
+        each info in sendInfo
+            div.message
+                span.info_message_username !{info.sender.username}(!{info.timestamp_formatted}):#{' '}
+                if info.files.length > 0
+                    img.info_message_image(src=info.files[0].url, alt="Image", style="max-width: 10%")
+                span.info_message !{info.messages}
     if showTextArea
         form(method='POST' action='' enctype="multipart/form-data").inbox_page_form_main
-            div.form_group
-                textarea(type="text" name='message' minlength='1' rows='4' required='true')
+            div.inbox_page_form_group
+                textarea.inbox_page_text_area(type="text" name='message' minlength='1' rows='4' required='true')
             div.form-new_blog_form_image
                 label(for='image') Send Image (Max Size Limit 5 MB):
                 input#image.form-control-file(type='file', name='image')

@@ -1,8 +1,737 @@
+/* General styles */
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+.header {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: underline;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+a {
+  text-decoration: none;
+  color: #333;
 }
 
-a {
-  color: #00B7FF;
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Navigation styles */
+nav {
+  position: relative;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+}
+
+nav a {
+  color: #fff;
+  margin: 0 10px;
+}
+nav {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+}
+
+nav a {
+  color: #fff;
+  margin: 0 10px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+/* Content styles */
+.content {
+  padding: 20px;
+}
+
+/* Specific styles for your classes */
+/* Specific styles for your classes */
+.layout_signin a, .layout_signup a {
+  background-color: #008CBA; /* Blue */
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.layout_signin a:hover, .layout_signup a:hover {
+  background-color: white;
+  color: black;
+}
+
+.home_page_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px); /* Subtracting the height of the nav bar */
+  text-align: center;
+  padding: 20px;
+}
+
+.home_page_container_welcome {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.home_page_container_enter, .home_page_container_signup {
+  display: inline-block;
+  background-color: #008CBA; /* Blue */
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.home_page_container_enter:hover, .home_page_container_signup:hover {
+  background-color: rgb(189, 171, 145);
+  color: black;
+}
+
+/* Sign-in page styles */
+.signin_form_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+   /* Subtracting the height of the nav bar */
+  padding-top: 10%; /* Adjust this value to move the container up or down */
+  overflow: auto; /* Add this line */
+}
+
+.signin_form_title {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.signin_form_main {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.signin_form_group_username, .signin_form_group_password {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.signin_form_group_username label, .signin_form_group_password label {
+  margin-bottom: 5px;
+}
+
+.signin_form_group_username input, .signin_form_group_password input {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.signin_form_button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #008CBA; /* Blue */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+.signin_form_button:hover {
+  background-color: white;
+  color: black;
+}
+
+.error_field {
+  color: red;
+  margin-top: 10px;
+}
+
+/* Sign-up page styles */
+.sign_up_form_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+   /* Subtracting the height of the nav bar */
+  padding-top: 10%; /* Adjust this value to move the container up or down */
+  overflow: auto; /* Add this line */
+}
+
+.sign_up_form_title {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.sign_up_form_main {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.sign_up_form_first_name, .sign_up_form_last_name, .sign_up_form_username, .sign_up_form_email, .sign_up_form_password, .sign_up_form_confirm_password, .form_sign_up_form_avatar {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.sign_up_form_first_name label, .sign_up_form_last_name label, .sign_up_form_username label, .sign_up_form_email label, .sign_up_form_password label, .sign_up_form_confirm_password label, .form_sign_up_form_avatar label {
+  margin-bottom: 5px;
+}
+
+.sign_up_form_first_name input, .sign_up_form_last_name input, .sign_up_form_username input, .sign_up_form_email input, .sign_up_form_password input, .sign_up_form_confirm_password input, .form_sign_up_form_avatar input {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.sign_up_form_button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #008CBA; /* Blue */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+.sign_up_form_button:hover {
+  background-color: white;
+  color: black;
+}
+.form_sign_up_form_avatar {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.form_sign_up_form_avatar label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form_sign_up_form_avatar input {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  background-color: #f9f9f9;
+}
+
+.error_field {
+  color: red;
+  margin-top: 10px;
+}
+
+.layout_ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.layout_ul li {
+  margin-left: 20px;
+}
+
+.layout_visit_profile a, .layout_chat_room a, .layout_logout a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.layout_logout a {
+  background-color: #f44336; /* Red */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition-duration: 0.4s;
+}
+
+.layout_logout a:hover {
+  background-color: white;
+  color: #f44336; /* Red */
+}
+.layout_visit_profile a, .layout_chat_room a {
+  color: #fff;
+  text-decoration: none;
+  background-color: #008CBA; /* Blue */
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition-duration: 0.4s;
+}
+
+.layout_visit_profile a:hover, .layout_chat_room a:hover {
+  background-color: white;
+  color: #008CBA; /* Blue */
+}
+
+/* Profile page styles */
+.profile_detail_currentUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.profile_detail_currentUser_title {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.profile_detail_currentUser_avatar_wrapper {
+  width: 200px; /* Adjust this value as needed */
+  height: 200px; /* Adjust this value as needed */
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.profile_detail_currentUser_avatar {
+  width: 100%;
+  height: auto;
+}
+
+.profile_detail_currentUser_fullname, .profile_detail_currentUser_username, .profile_detail_currentUser_email {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.my_account_page_editPost a {
+  display: inline-block;
+  background-color: #008CBA; /* Blue */
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition-duration: 0.4s;
+}
+
+.my_account_page_editPost a:hover {
+  background-color: white;
+  color: #008CBA; /* Blue */
+}
+
+/* Change password page styles */
+.change_password_form_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+   /* Subtracting the height of the nav bar */
+  padding-top: 10%; /* Adjust this value to move the container up or down */
+  overflow: auto; /* Add this line */
+}
+
+.change_password_form_title {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.change_password_form_main {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.change_password_form_current_password, .change_password_form_password, .change_password_form_confirm_password {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.change_password_form_current_password label, .change_password_form_password label, .change_password_form_confirm_password label {
+  margin-bottom: 5px;
+}
+
+.change_password_form_current_password input, .change_password_form_password input, .change_password_form_confirm_password input {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.change_password_form_button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #008CBA; /* Blue */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+.change_password_form_button:hover {
+  background-color: white;
+  color: #008CBA; /* Blue */
+}
+
+.error_field {
+  color: red;
+  margin-top: 10px;
+}
+
+/* Chat room page styles */
+.chat_room_page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: calc(100vh - 60px); /* Subtracting the height of the nav bar */
+  padding-top: 10%; /* Adjust this value to move the container up or down */
+  overflow: auto; /* Add this line */
+}
+
+.chat_room_page_title {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.chat_room_page_layout_ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chat_room_page_layout_ul li {
+  margin-bottom: 10px;
+}
+
+.chat_room_page_layout_ul a {
+  display: inline-block;
+  background-color: #008CBA; /* Blue */
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  transition-duration: 0.4s;
+}
+
+.chat_room_page_layout_ul a:hover {
+  background-color: white;
+  color: #008CBA; /* Blue */
+}
+
+/* Add friend page styles */
+.add_friend_form_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: calc(100vh - 60px); /* Subtracting the height of the nav bar */
+  padding-top: 10%; /* Adjust this value to move the container up or down */
+  overflow: auto; /* Add this line */
+}
+
+.add_friend_form_title {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.add_friend_form_main {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Add this line */
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.add_friend_form_group_username input {
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.add_friend_form_button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #008CBA; /* Blue */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+.add_friend_form_button:hover {
+  background-color: white;
+  color: #008CBA; /* Blue */
+}
+
+.add_friend_form_true_title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.add_friend_form_username, .add_friend_form_request_sent, .add_friend_form_request_received, .add_friend_form_user_not_found {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.add_friend_form_send_request {
+  display: inline-block;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  transition-duration: 0.4s;
+}
+
+.add_friend_form_send_request:hover {
+  background-color: white;
+  color: #4CAF50; /* Green */
+}
+
+.alert.alert_success {
+  color: #4CAF50; /* Green */
+  margin-bottom: 10px;
+}
+
+.error_field {
+  color: red;
+  margin-top: 10px;
+}
+
+/* View friend request page styles */
+.view_friend_request_title {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.view_friend_request_none {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.view_friend_request_username {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.view_friend_request_buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.view_friend_request_accept, .view_friend_request_reject {
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  transition-duration: 0.4s;
+}
+
+.view_friend_request_accept {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  margin-right: 10px;
+}
+
+.view_friend_request_accept:hover {
+  background-color: white;
+  color: #4CAF50; /* Green */
+}
+
+.view_friend_request_reject {
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+.view_friend_request_reject:hover {
+  background-color: white;
+  color: #f44336; /* Red */
+}
+
+/* View friends list page styles */
+.view_friends_list_title {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.friend_list_page_no_friend {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.friend_list_page_no_friend_p {
+  font-size: 18px;
+}
+
+.view_friends_list_username {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Inbox friends list page styles */
+.inbox_friends_list_title {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.inbox_friends_list_no_friend {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.inbox_page_friends_list {
+  font-size: 18px;
+  text-decoration: none;
+  color: #008CBA; /* Blue */
+  display: block;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+  margin-bottom: 10px;
+  transition-duration: 0.4s;
+}
+
+.inbox_page_friends_list:hover {
+  background-color: #008CBA; /* Blue */
+  color: white;
+}
+
+/* user-message-page */
+/* Container holding the whole chat */
+.message_container {
+  width:  100%;
+  height:  500px; /* Adjust as needed */
+  overflow-y: auto; /* Enable scrolling */
+  padding:  10px;
+  background-color: #f5f5f5; /* Light gray background */
+}
+
+/* Each individual message */
+.message {
+  max-width:  60%;
+  margin-bottom:  10px;
+  clear: both;
+}
+
+/* The message sender's username */
+.info_message_username {
+  font-weight: bold;
+  color: #333; /* Dark gray text */
+}
+
+/* The message content */
+.info_message {
+  word-wrap: break-word;
+  background-color: #ddd; /* Light gray background */
+  border-radius:  10px;
+  padding:  10px;
+  line-height:  1.5;
+}
+
+/* The message image */
+.info_message_image {
+  max-width:  100%;
+  border-radius:  10px;
+}
+
+/* Form for sending new messages */
+.inbox_page_form_main {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: stretch;
+  padding:  10px;
+  background-color: #fff; /* White background */
+}
+
+/* Text area for typing a message */
+.inbox_page_text_area {
+  resize: none; /* Prevent manual resizing */
+  width:  100%; /* Take up full width */
+  border:  1px solid #ccc; /* Gray border */
+  border-radius:  5px;
+  padding:  5px;
+  margin-bottom:  10px; /* Add some space below the textarea */
+}
+
+/* File input for attaching images */
+.form-control-file {
+  display: inline-block;
+  margin-top:  10px;
+  margin-bottom: 20px; /* Add some space above the file input */
+  width:  100%; /* Take up full width */
+}
+/* Styling for the file input button */
+.form-control-file::file-selector-button {
+  background-color: #007bff; /* Blue background */
+  color: white;
+  border: none;
+  border-radius:  5px;
+  padding:  5px  10px;
+  cursor: pointer;
+}
+/* Styling for the file input button on hover */
+.form-control-file::file-selector-button:hover {
+  background-color: #0056b3; /* Dark blue background on hover */
+}
+
+/* Styling for the file input button on focus */
+.form-control-file:focus-within::file-selector-button {
+  outline:  2px solid #0964b0;
+  outline-offset:  2px;
+}
+
+/* Cross-browser considerations for Firefox */
+@supports (-moz-appearance: none) {
+  .form-control-file::file-selector-button {
+    color: #0964b0;
+  }
+}
+
+/* Submit button for sending messages */
+button[type="submit"] {
+  background-color: #007bff; /* Blue background */
+  color: white;
+  border: none;
+  border-radius:   5px;
+  padding:   5px   10px;
+  cursor: pointer;
+  max-width:  150px; /* Set a maximum width */
+  width:  100%; /* Optionally, make the button full width within its container */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3; /* Dark blue background on hover */
 }

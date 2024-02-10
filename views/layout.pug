@@ -9,7 +9,7 @@ html
       if currentUser
         ul.layout_ul
           //- li.layout_greeting Hello, #{currentUser.username}
-          li.layout_my_account
+          li.layout_visit_profile
               a(href="/visit-profile") #{currentUser.username}
           li.layout_chat_room
             a(href="/chat-room") Chat Room
@@ -18,7 +18,7 @@ html
 
       else 
         ul 
-          li.layout_login
+          li.layout_signin
             a(href="/sign-in") Sign In
           li.layout_signup
             a(href="/sign-up") Sign Up

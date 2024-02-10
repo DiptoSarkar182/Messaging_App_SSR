@@ -256,24 +256,3 @@ exports.start_chatting_post = [
     })
 ];
 
-// exports.start_chatting_post = [
-//     body("message", "Cannot send empty message!")
-//     .trim()
-//     .isLength({ min: 1 })
-//     .escape(),
-
-//     async(req,res,next)=>{
-//         try {
-//             const currentUser = req.user;
-//             const receiverId = req.params.id;
-//             await new Message({
-//                 messages: req.body.message,
-//                 sender: currentUser.id,
-//                 receiver: receiverId,
-//             }).save();
-//             res.redirect(`/view-inbox/${receiverId}`)
-//         } catch (err) {
-//             return next(err)
-//         }
-//     }
-// ];
