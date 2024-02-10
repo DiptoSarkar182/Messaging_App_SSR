@@ -9,6 +9,7 @@ const validator = require('validator');
 const fs = require('fs');
 const path = require('path');
 const asyncHandler = require('express-async-handler');
+const Message = require('../models/message');
 
 exports.chat_room_get = (req,res,next)=>{
     return res.render("chat-room-page",{
@@ -99,6 +100,9 @@ exports.accept_friend_request_get = async(req,res,next)=>{
         currentUser.friend_list.push(findId.id);
         await currentUser.save();
 
+        findId.friend_list.push(currentUser.id);
+        await findId.save();
+
         currentUser.friend_request.pull(findId.id);
         await currentUser.save();
         return res.redirect("/view-friend-request");
@@ -136,3 +140,140 @@ exports.view_friends_list_get = async(req,res,next)=>{
         return next(err);
     }
 }
+
+exports.view_inbox_get = async(req,res,next)=>{
+    try {
+        const currentUser = req.user;
+        let friendsList = [];
+        for(let i=0; i<currentUser.friend_list.length; i++){
+            const myFriend = await User.findById(currentUser.friend_list[i]);
+            friendsList.push(myFriend);
+        }
+        return res.render("inbox-page",{
+            title: "Inbox",
+            friendsList: friendsList,
+        })
+    } catch (err) {
+        return next(err)
+    }
+}
+
+// exports.start_chatting_get = async(req,res,next)=>{
+//     try {
+//         const currentUser = req.user;
+//         let friendsList = [];
+//         for(let i=0; i<currentUser.friend_list.length; i++){
+//             const myFriend = await User.findById(currentUser.friend_list[i]);
+//             friendsList.push(myFriend);
+//         }
+//         const isCurrentUserSender = await Message.find({
+//             sender: currentUser.id,
+//         }).sort({dateCreated:1}).populate('receiver');
+
+//         const isCurrentUserReceiver = await Message.find({
+//             receiver: currentUser.id,
+//         }).sort({dateCreated:1}).populate('sender');
+
+//         if(isCurrentUserReceiver){
+//             const sendInfo = isCurrentUserReceiver;
+//             const showTextArea = true;
+//             res.render("user-messages-page",{
+//                 title: "Inbox",
+//                 friendsList: friendsList,
+//                 showTextArea: showTextArea,
+//                 sendInfo: sendInfo,
+//             })
+//         }
+//     } catch (err) {
+//         return next(err);
+//     }
+// }
+
+exports.start_chatting_get = async(req,res,next)=>{
+    try {
+        const currentUser = req.user;
+        let friendsList = [];
+        for(let i=0; i<currentUser.friend_list.length; i++){
+            const myFriend = await User.findById(currentUser.friend_list[i]);
+            friendsList.push(myFriend);
+        }
+
+        // Fetch all messages where the current user is either the sender or the receiver
+        const messages = await Message.find({
+            $or: [
+                { sender: currentUser.id },
+                { receiver: currentUser.id }
+            ]
+        }).sort({dateCreated:1}).populate('sender').populate('receiver');
+
+        // Filter the messages to only include conversations between the current user and the other user
+        const conversation = messages.filter(message =>
+            (message.sender.id === currentUser.id && message.receiver.id === req.params.id) ||
+            (message.receiver.id === currentUser.id && message.sender.id === req.params.id)
+        );
+
+        const showTextArea = true;
+        res.render("user-messages-page",{
+            title: "Inbox",
+            friendsList: friendsList,
+            showTextArea: showTextArea,
+            sendInfo: conversation, // Pass the conversation to the template
+        })
+    } catch (err) {
+        return next(err);
+    }
+}
+
+exports.start_chatting_post = [
+    body("message", "Cannot send empty message!")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+
+    asyncHandler(async(req,res,next)=>{
+        const uploader = async (path) => await cloudinary.uploads(path, "messaging_app/message_images")
+        try {
+            const urls = []
+            const files = req.files; 
+            for(const file of files){
+                const { path } = file; 
+                const newPath = await uploader(path)
+                urls.push(newPath)
+                fs.unlinkSync(path)
+            }
+            const currentUser = req.user;
+            const receiverId = req.params.id;
+            await new Message({
+                messages: req.body.message,
+                sender: currentUser.id,
+                receiver: receiverId,
+                files: urls,
+            }).save();
+            res.redirect(`/view-inbox/${receiverId}`)
+        } catch (err) {
+            return next(err)
+        }
+    })
+];
+
+// exports.start_chatting_post = [
+//     body("message", "Cannot send empty message!")
+//     .trim()
+//     .isLength({ min: 1 })
+//     .escape(),
+
+//     async(req,res,next)=>{
+//         try {
+//             const currentUser = req.user;
+//             const receiverId = req.params.id;
+//             await new Message({
+//                 messages: req.body.message,
+//                 sender: currentUser.id,
+//                 receiver: receiverId,
+//             }).save();
+//             res.redirect(`/view-inbox/${receiverId}`)
+//         } catch (err) {
+//             return next(err)
+//         }
+//     }
+// ];

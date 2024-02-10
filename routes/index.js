@@ -27,6 +27,14 @@ router.get("/accept-request/:id", chatController.accept_friend_request_get);
 router.get("/reject-request/:id", chatController.reject_friend_request_get);
 
 router.get("/view-friends-list", chatController.view_friends_list_get);
+router.get("/view-inbox", chatController.view_inbox_get);
+router.get("/view-inbox/:id", chatController.start_chatting_get);
+router.post("/view-inbox/:id", upload.array('image',1), chatController.start_chatting_post);
+
+router.get("/visit-profile/edit-profile/:id", userController.edit_profile_get);
+router.post("/visit-profile/edit-profile/:id", upload.array('avatar',1), userController.edit_profile_post);
+router.get("/visit-profile/change-password/:id", userController.change_password_get);
+router.post("/visit-profile/change-password/:id", userController.change_password_post);
 
 
 router.get("/log-out", userController.log_out);

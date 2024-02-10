@@ -1,0 +1,23 @@
+extends layout 
+
+block content
+    h1.inbox_friends_list_title!= title
+    if friendsList.length === 0
+        p You have no friend.
+    else
+        each friend in friendsList
+            a(href=`/view-inbox/${friend.id}`) #{friend.username}
+            br
+            br
+    
+    
+        if showTextArea
+            form(method='POST' action='').inbox_page_form_main
+                div.form_group
+                    textarea(type="text" name='message' minlength='2' rows='4' required='true')
+        
+                button(type="submit") Send
+    if errors
+          ul.error_field
+            for error in errors
+              li!= error.msg

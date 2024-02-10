@@ -4,7 +4,11 @@ block content
 
     div.profile_detail_currentUser
         h1.profile_detail_currentUser_title!=title
-        img.profile_detail_currentUser_avatar(src=currentUser.files[0].url, alt="Image", style="max-width: 100%;")
+        img.profile_detail_currentUser_avatar(src=currentUser.files[0].url, alt="Image", style="max-width: 20%;")
         p.profile_detail_currentUser_fullname!="Full Name: " + currentUser.fullName
         p.profile_detail_currentUser_username!="Username: " + currentUser.username
         p.profile_detail_currentUser_email!="Email Address: " + currentUser.email
+        p.my_account_page_editPost
+            a(href=`/visit-profile/edit-profile/${currentUser.id}`) Edit Profile
+        p.my_account_page_editPost
+            a(href=`/visit-profile/change-password/${currentUser.id}`) Change Password

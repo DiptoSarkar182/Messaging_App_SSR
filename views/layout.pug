@@ -8,11 +8,11 @@ html
       a.layout_a(href="/").header Messenger
       if currentUser
         ul.layout_ul
-          li.layout_greeting Hello, #{currentUser.username}
+          //- li.layout_greeting Hello, #{currentUser.username}
+          li.layout_my_account
+              a(href="/visit-profile") #{currentUser.username}
           li.layout_chat_room
             a(href="/chat-room") Chat Room
-          li.layout_my_account
-              a(href="/visit-profile") My Profile
           li.layout_logout
             a(href="/log-out").logout Logout
 
