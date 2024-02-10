@@ -28,3 +28,16 @@ exports.uploads = (file, folder) => {
         });
     });
 }
+
+exports.deleteImage = (publicId) => {
+    return new Promise(resolve => {
+        cloudinary.uploader.destroy(publicId, (error, result) => {
+            if (error) {
+                console.error('Delete from Cloudinary failed:', error);
+                resolve(null);
+            } else {
+                resolve(result);
+            }
+        });
+    });
+}

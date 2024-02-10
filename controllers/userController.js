@@ -212,6 +212,8 @@ exports.edit_profile_post = [
                 const currentUserID = req.params.id;
                 let user = await User.findOne({_id:currentUserID});
                 if(user){
+                  const publicId = user.files[0].id; // replace with your actual public ID
+                  const result = await cloudinary.deleteImage(publicId);
                   await user.updateOne({_id:currentUserID},
                     { $set: { "files": [] } });
                   if(req.method === 'POST'){
