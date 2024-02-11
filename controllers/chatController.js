@@ -12,12 +12,18 @@ const asyncHandler = require('express-async-handler');
 const Message = require('../models/message');
 
 exports.chat_room_get = (req,res,next)=>{
+    if(!req.user){
+        return res.redirect("/sign-in");
+    }
     return res.render("chat-room-page",{
         title: "Welcome to the chat room"
     })
 }
 
 exports.add_friend_get = (req,res,next)=>{
+    if(!req.user){
+        return res.redirect("/sign-in");
+    }
     return res.render("add-friend-page",{
         title: "Add a friend",
         successMessage: req.flash('success'),
@@ -62,6 +68,9 @@ exports.add_friend_post = [
 
 exports.friend_request_get = async(req,res,next)=>{
     try {
+        if(!req.user){
+            return res.redirect("/sign-in");
+        }
         const currentUserID = req.user.id;
         const sendingRequestTo = req.params.id;
         const receiverUserDetails = await User.findById(sendingRequestTo);
@@ -76,6 +85,9 @@ exports.friend_request_get = async(req,res,next)=>{
 
 exports.view_friend_request_get = async(req,res,next)=>{
     try {
+        if(!req.user){
+            return res.redirect("/sign-in");
+        }
         const currentUser = req.user;
         let friendRequestList = [];
         for(let i=0; i<currentUser.friend_request.length; i++){
@@ -94,6 +106,9 @@ exports.view_friend_request_get = async(req,res,next)=>{
 
 exports.accept_friend_request_get = async(req,res,next)=>{
     try {
+        if(!req.user){
+            return res.redirect("/sign-in");
+        }
         const idOfIncomingRequest = req.params.id;
         const findId = await User.findById(idOfIncomingRequest);
         const currentUser = req.user;
@@ -113,6 +128,9 @@ exports.accept_friend_request_get = async(req,res,next)=>{
 
 exports.reject_friend_request_get = async(req,res,next)=>{
     try {
+        if(!req.user){
+            return res.redirect("/sign-in");
+        }
         const idOfIncomingRequest = req.params.id;
         const currentUser = req.user;
         const findId = await User.findById(idOfIncomingRequest);
@@ -126,6 +144,9 @@ exports.reject_friend_request_get = async(req,res,next)=>{
 
 exports.view_friends_list_get = async(req,res,next)=>{
     try {
+        if(!req.user){
+            return res.redirect("/sign-in");
+        }
         const currentUser = req.user;
         let friendsList = [];
         for(let i=0; i<currentUser.friend_list.length; i++){
@@ -143,6 +164,9 @@ exports.view_friends_list_get = async(req,res,next)=>{
 
 exports.view_inbox_get = async(req,res,next)=>{
     try {
+        if(!req.user){
+            return res.redirect("/sign-in");
+        }
         const currentUser = req.user;
         let friendsList = [];
         for(let i=0; i<currentUser.friend_list.length; i++){
@@ -158,39 +182,13 @@ exports.view_inbox_get = async(req,res,next)=>{
     }
 }
 
-// exports.start_chatting_get = async(req,res,next)=>{
-//     try {
-//         const currentUser = req.user;
-//         let friendsList = [];
-//         for(let i=0; i<currentUser.friend_list.length; i++){
-//             const myFriend = await User.findById(currentUser.friend_list[i]);
-//             friendsList.push(myFriend);
-//         }
-//         const isCurrentUserSender = await Message.find({
-//             sender: currentUser.id,
-//         }).sort({dateCreated:1}).populate('receiver');
 
-//         const isCurrentUserReceiver = await Message.find({
-//             receiver: currentUser.id,
-//         }).sort({dateCreated:1}).populate('sender');
-
-//         if(isCurrentUserReceiver){
-//             const sendInfo = isCurrentUserReceiver;
-//             const showTextArea = true;
-//             res.render("user-messages-page",{
-//                 title: "Inbox",
-//                 friendsList: friendsList,
-//                 showTextArea: showTextArea,
-//                 sendInfo: sendInfo,
-//             })
-//         }
-//     } catch (err) {
-//         return next(err);
-//     }
-// }
 
 exports.start_chatting_get = async(req,res,next)=>{
     try {
+        if(!req.user){
+            return res.redirect("/sign-in");
+        }
         const currentUser = req.user;
         let friendsList = [];
         for(let i=0; i<currentUser.friend_list.length; i++){
@@ -198,7 +196,7 @@ exports.start_chatting_get = async(req,res,next)=>{
             friendsList.push(myFriend);
         }
 
-        // Fetch all messages where the current user is either the sender or the receiver
+        
         const messages = await Message.find({
             $or: [
                 { sender: currentUser.id },
@@ -206,7 +204,7 @@ exports.start_chatting_get = async(req,res,next)=>{
             ]
         }).sort({dateCreated:1}).populate('sender').populate('receiver');
 
-        // Filter the messages to only include conversations between the current user and the other user
+        
         const conversation = messages.filter(message =>
             (message.sender.id === currentUser.id && message.receiver.id === req.params.id) ||
             (message.receiver.id === currentUser.id && message.sender.id === req.params.id)
@@ -217,7 +215,7 @@ exports.start_chatting_get = async(req,res,next)=>{
             title: "Inbox",
             friendsList: friendsList,
             showTextArea: showTextArea,
-            sendInfo: conversation, // Pass the conversation to the template
+            sendInfo: conversation, 
         })
     } catch (err) {
         return next(err);

@@ -135,6 +135,9 @@ exports.sign_in_post =  passport.authenticate(
 );
 
 exports.visit_profile_get = (req,res,next)=>{
+  if(!req.user){
+    return res.redirect("/sign-in");
+  }
   const currentUser = req.user;
   
   return res.render("visit-profile-page",{
@@ -145,6 +148,9 @@ exports.visit_profile_get = (req,res,next)=>{
 
 exports.edit_profile_get = async(req,res,next)=>{
   try {
+    if(!req.user){
+      return res.redirect("/sign-in");
+    }
     const currentUserID = req.params.id;
     const user = await User.findOne({_id: currentUserID});
     return res.render("sign-up-page",{
@@ -212,7 +218,7 @@ exports.edit_profile_post = [
                 const currentUserID = req.params.id;
                 let user = await User.findOne({_id:currentUserID});
                 if(user){
-                  const publicId = user.files[0].id; // replace with your actual public ID
+                  const publicId = user.files[0].id; 
                   const result = await cloudinary.deleteImage(publicId);
                   await user.updateOne({_id:currentUserID},
                     { $set: { "files": [] } });
@@ -248,6 +254,9 @@ exports.edit_profile_post = [
 ];
 
 exports.change_password_get = (req,res,next)=>{
+  if(!req.user){
+      return res.redirect("/sign-in");
+    }
   return res.render("change-password-page",{
     title: "Change Password"
   })
