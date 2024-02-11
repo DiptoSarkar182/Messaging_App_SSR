@@ -134,6 +134,21 @@ exports.sign_in_post =  passport.authenticate(
   }
 );
 
+exports.demo_user_get = async(req,res,next)=>{
+  const demoUsername = "Demo_User_1";
+  const demoUser = await User.findOne({username: demoUsername});
+  if (!demoUser) {
+    // Handle case when demo user is not found
+    return res.redirect('/sign-in');
+}
+req.logIn(demoUser, function(err) {
+    if (err) { 
+        return next(err); 
+    }
+    return res.redirect('/');
+});
+}
+
 exports.visit_profile_get = (req,res,next)=>{
   if(!req.user){
     return res.redirect("/sign-in");

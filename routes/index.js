@@ -36,6 +36,7 @@ router.post("/visit-profile/edit-profile/:id", upload.array('avatar',1), userCon
 router.get("/visit-profile/change-password/:id", userController.change_password_get);
 router.post("/visit-profile/change-password/:id", userController.change_password_post);
 
+router.get("/demo-user", userController.demo_user_get);
 
 router.get("/log-out", userController.log_out);
 
