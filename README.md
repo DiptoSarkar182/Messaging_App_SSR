@@ -1,5 +1,5 @@
 # Messaging_App_SSR
-This is a simple messaging app using Server Side Rendering (SSR) with Node.js, Express.js and mongodb as database. It includes user sign in and sign up, the ability to send and receive messages with images, adding friends, accept or reject friend request. The application is built as part of the curriculum for The Odin Project. Live demo https://messaging-app-cd9a.onrender.com. If this link takes too long to load, try this one https://messaging-app.adaptable.app/
+This is a simple messaging app using Server Side Rendering (SSR) with Node.js, Express.js and mongodb as database. It includes user sign in and sign up, the ability to send and receive messages with images, adding friends, accept or reject friend request. Live demo https://messaging-app-cd9a.onrender.com. If this link takes too long to load, try this one https://messaging-app.adaptable.app/
 
 ## Features
 
